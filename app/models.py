@@ -37,7 +37,24 @@ class User(db.Model,UserMixin):
 class Order(db.Model):
     __tablename__ = 'orders'
     id = db.Column(db.Integer,primary_key = True)
+    food = db.Column(db.String(255),unique = True,nullable = False)
+    cost = db.Column(db.Integer)
+    user_id = db.Column(db.Integer,db.ForeignKey("users.id"))
+    review = db.relationship('Review',backref = 'order',lazy = 'dynamic')
     
+    def save(self):
+        db.session.add(self)
+        db.session.commit()
 
+    def delete(self):
+        db.session.delete(self)
+        db.session.commit()
 
-    
+    def get_order(id):
+        order = Order.query.filter_by(id=id).first()
+
+        return order
+
+    def __repr__(self):
+        return f'Order {self.title}'
+
