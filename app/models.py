@@ -10,6 +10,7 @@ class User(db.Model,UserMixin):
     email = db.Column(db.String(80),unique = True,index = False,nullable = False)
     bio = db.Column(db.String(255),default = 'My default Bio')
     hashed_password = db.Column(db.String(255),nullable = False)
+    review = db.relationship('Review',backref = 'user',lazy = 'dynamic')
     order = db.relationship('Order',backref = 'user',lazy = 'dynamic')
 
     @property 
@@ -57,4 +58,28 @@ class Order(db.Model):
 
     def __repr__(self):
         return f'Order {self.title}'
+
+class Review(db.Model):
+    __tablename__ = 'reviews'
+    id = db.Column(db.Integer,primary_key = True)
+    review = db.Column(db.String)
+    posted = db.Column(db.DateTime,default = datetime.utcnow)
+    order_id = db.Column(db.Integer,db.ForeignKey("orders.id"))
+    user_id = db.Column(db.Integer,db.ForeignKey("users.id"))
+
+    def save(self):
+        db.session.add(self)
+        db.session.commit()
+
+    def delete(self):
+        db.session.remove(self)
+        db.session.commit()
+
+    def get_review(id):
+        review = Review.query.all(id=id)
+        return review
+
+
+    def __repr__(self):
+        return f'Review {self.review}'
 
