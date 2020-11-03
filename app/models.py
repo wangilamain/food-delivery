@@ -39,7 +39,8 @@ class Order(db.Model):
     __tablename__ = 'orders'
     id = db.Column(db.Integer,primary_key = True)
     food = db.Column(db.String(255),unique = True,nullable = False)
-    cost = db.Column(db.Integer)
+    price = db.Column(db.Integer)
+    posted = db.Column(db.DateTime,default = datetime.utcnow)
     user_id = db.Column(db.Integer,db.ForeignKey("users.id"))
     review = db.relationship('Review',backref = 'order',lazy = 'dynamic')
     
@@ -83,3 +84,14 @@ class Review(db.Model):
     def __repr__(self):
         return f'Review {self.review}'
 
+class Subscriber(db.Model):
+    __tablename__ = 'subscribers'
+    id = db.Column(db.Integer,primary_key = True)
+    email = db.Column(db.String(255),unique = True,index = True)
+
+    def save_subscriber(self):
+        db.session.add(self)
+        db.session.commit()
+
+    def __repr__(self):
+        return f'Subscriber {self.email}'
