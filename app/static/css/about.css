@@ -55,3 +55,47 @@
     font-family: 'Jaldi', sans-serif;
     color: rgb(54, 207, 54);
 }
+.container-fluid .howitworks{
+    text-align: center;
+    align-items: center;
+    color: red;
+    padding-top: 50px;
+    margin-bottom: 50px;
+    font-family: 'Acme', sans-serif;
+    font-size: 30px;
+}
+.process{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    padding-bottom: 30px;
+    margin-bottom: 20px;
+    font-family: 'Delius', cursive;
+    font-size: 20px;
+}
+
+
+.container-fluid .footer {
+    background-image: url(./photos/grey.jpeg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100vw;
+    max-width: 100%;
+    height: 300px;
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 0;
+    padding-right: 0;
+    font-family: 'Delius', cursive;
+    font-size: 25px;
+    color: white;
+}
+.footer h5{
+    color:rgb(12, 133, 12) ;
+    font-size: 20px;
+    font-weight: 900;
+}
+.footer .col-md-6{
+    padding-left: 50px;
+}
