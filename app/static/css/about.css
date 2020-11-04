@@ -32,4 +32,26 @@
     font-size: 30px;
     font-family: 'Acme', sans-serif;
     color: red;
+}.container-fluid .col-md-6{
+    column-gap: 10px;
+}
+
+.container-fluid .col-md-6 img{
+    padding-left: 10%;
+    align-items: center;
+    border-radius: 25px;
+
+}
+.container-fluid .col-md-6 .welcome{
+  text-align: center;
+  align-items: center;
+  line-height: 3.5em;
+}
+.welcome h3{
+    font-size: 45px;
+    font-weight: bolder;
+    padding: 15px;
+    margin: 15px;
+    font-family: 'Jaldi', sans-serif;
+    color: rgb(54, 207, 54);
 }
