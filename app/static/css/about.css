@@ -18,3 +18,18 @@
     margin-bottom: 10px;
 
 }
+.about {
+    padding-top: 120px;
+
+}
+.about h1{
+    font-size: 70px;
+    font-family: 'Acme', sans-serif;
+}
+.link{
+    padding: 50px;
+    margin-left: 10px;
+    font-size: 30px;
+    font-family: 'Acme', sans-serif;
+    color: red;
+}
