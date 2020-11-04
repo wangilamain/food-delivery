@@ -1,6 +1,8 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField,TextAreaField,SubmitField,SelectField
-from wtforms.validators import Required
+from wtforms import StringField,TextAreaField,ValidationError,SubmitField,SelectField
+from wtforms.validators import Required,Email
+from ..models import User
+from flask_login import current_user
 
 class PitchForm(FlaskForm):
 
@@ -20,5 +22,18 @@ class Vote(FlaskForm):
 
 
 class UpdateProfile(FlaskForm):
+    username = StringField('Enter Username',validators=[Required()])
+    email = StringField('Email Address',Email(),validators=[Required()])
     bio = TextAreaField('bio', validators=[Required()])
     submit = SubmitField('Post')
+
+    def validate_email(self,email):
+        if email.data != current_user.email:
+            if User.query.filter_by(email = email.data).first():
+                 raise ValidationError("The Email has already been taken!")
+    
+    def validate_username(self, username):
+        if username.data != current_user.username:
+            if User.query.filter_by(username = username.data).first():
+                raise ValidationError("The username has already been taken")
+
