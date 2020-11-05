@@ -6,6 +6,7 @@ from .. import db
 from flask_login import login_user,logout_user,login_required
 from ..models import User
 from .forms import LoginForm,RegistrationForm
+from ..email import mail_message
 
 
 
@@ -32,6 +33,9 @@ def register():
         user = User(email = form.email.data, username = form.username.data,password = form.password.data)
         db.session.add(user)
         db.session.commit()
+
+        mail_message("Welcome to our food delivery","email/welcome_user",user.email,user=user)
+
 
         flash('Your account has been created! You are now able to login','Enjoy!')
         
